@@ -12,19 +12,27 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    padding: 0 1rem;
 }
 
 .slider {
-    width: 100vw;
-    max-width: 600px;
+    width: 100%;
+    max-width: 1000px;
     position: relative;
     overflow: hidden;
 }
+
 img {
     width: 100%;
     border-radius: 1rem;
-    height: auto;
+    object-fit: cover;
+    height: 600px;
 }
+
+.slider-content {
+    position: relative;
+}
+
 .slides {
     display: flex;
     transition: transform 0.5s ease-in-out;
@@ -32,72 +40,73 @@ img {
 
 .slide {
     min-width: 100%;
-    transition: transform 0.5s ease-in-out;
+    position: relative;
+    display: flex;
+    flex-direction: column; 
 }
-input[type="radio"] {
-    display: none;
-}
+
 .caption {
-    text-align: center;
-    margin-top: 1rem;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
+    text-align: left; 
+    padding: 1rem;
+    
 }
 
 .controls {
     display: flex;
     justify-content: center;
-    margin-top: 1.5rem;
+    position: absolute;
+    bottom: 10px;
+    right: 10px; 
+    width: auto;
 }
 
 .dot {
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 1rem;
+    width: 1rem;
     margin: 0 0.5rem;
     background-color: #bbb;
     border-radius: 50%;
-    display: inline-block;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
-    padding: 1rem; 
 }
 
 .dot:hover {
-    background-color: #2196F3;
-    transform: scale(1.2); 
+    background-color: #e70faa;
+    transform: scale(1.2);
 }
 
-input[type="radio"]:checked + .dot {
-    background-color: #2196F3;
+input[type="radio"] {
+    display: none;
 }
 
-#slide1:checked ~ .slides {
-    transform: translateX(0);
+input#slide1:checked ~ .slider-content .slides {
+    transform: translateX(0%);
 }
 
-#slide2:checked ~ .slides {
+input#slide2:checked ~ .slider-content .slides {
     transform: translateX(-100%);
 }
 
-#slide3:checked ~ .slides {
+input#slide3:checked ~ .slider-content .slides {
     transform: translateX(-200%);
 }
 
-#slide4:checked ~ .slides {
+input#slide4:checked ~ .slider-content .slides {
     transform: translateX(-300%);
 }
 
 @media (max-width: 600px) {
-    .slider {
-        width: 90vw; 
+    img {
+        height: 400px;
     }
 
     .caption {
-        font-size: 1rem; 
+        font-size: 1rem;
     }
 
     .dot {
         height: 1.2rem;
         width: 1.2rem;
-        padding: 0.8rem; 
     }
 }
